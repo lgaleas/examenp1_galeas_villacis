@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'screens/splash_screen.dart';
+import 'screens/register_screen.dart';
+import 'screens/login_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -8,11 +11,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Image.asset('assets/images/tu_imagen.png'), // Reemplaza con el nombre de tu imagen
-        ),
+      title: 'Daily Recipe',
+      theme: ThemeData(
+        primarySwatch: Colors.orange,
       ),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => SplashScreen(),
+        '/register': (context) => RegisterScreen(),
+        '/login': (context) => LoginScreen(),
+      },
     );
   }
 }
