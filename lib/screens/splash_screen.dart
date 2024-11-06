@@ -1,11 +1,28 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
   @override
+  SplashScreenState createState() => SplashScreenState();
+}
+
+class SplashScreenState extends State<SplashScreen> {
+  bool isDarkTheme = true;
+  bool isYellowText = false;
+
+  void toggleTheme() {
+    setState(() {
+      isDarkTheme = !isDarkTheme;
+      isYellowText = !isYellowText;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    Color textColor = isYellowText ? Colors.yellow : (isDarkTheme ? Colors.white : Colors.black);
+
     return Scaffold(
       body: Stack(
         fit: StackFit.expand,
@@ -15,7 +32,7 @@ class SplashScreen extends StatelessWidget {
             fit: BoxFit.cover,
           ),
           Container(
-            color: Colors.black.withOpacity(0.4),
+            color: Colors.black.withOpacity(isDarkTheme ? 0.4 : 0.1),
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -45,24 +62,24 @@ class SplashScreen extends StatelessWidget {
                       fit: BoxFit.contain,
                     ),
                   ),
-                  const Column(
+                  Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      SizedBox(height: 55),
+                      const SizedBox(height: 55),
                       Text(
                         'Daily Recipe',
                         style: TextStyle(
                           fontSize: 32,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: textColor,
                         ),
                       ),
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                       Text(
                         'Cooking Done The Easy Way',
                         style: TextStyle(
                           fontSize: 12,
-                          color: Colors.white70,
+                          color: textColor.withOpacity(0.7),
                         ),
                       ),
                     ],
@@ -85,9 +102,9 @@ class SplashScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
-                      child: const Text(
+                      child: Text(
                         'Register',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+                        style: TextStyle(fontSize: 18, color: textColor),
                       ),
                     ),
                     const SizedBox(height: 10),
@@ -95,15 +112,26 @@ class SplashScreen extends StatelessWidget {
                       onPressed: () {
                         Navigator.pushNamed(context, '/login');
                       },
-                      child: const Text(
+                      child: Text(
                         'Sign In',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+                        style: TextStyle(fontSize: 18, color: textColor),
                       ),
                     ),
                   ],
                 ),
               ),
             ],
+          ),
+          Positioned(
+            top: 40,
+            right: 20,
+            child: IconButton(
+              icon: Icon(
+                isDarkTheme ? Icons.brightness_7 : Icons.brightness_2,
+                color: textColor,
+              ),
+              onPressed: toggleTheme,
+            ),
           ),
         ],
       ),
