@@ -25,9 +25,9 @@ class SplashScreen extends StatelessWidget {
               Stack(
                 alignment: Alignment.center,
                 children: [
-                  // Círculo decorativo borroso y oscuro
+                  // Círculo decorativo borroso y menos opaco
                   Opacity(
-                    opacity: 0.3, // Ajuste de opacidad para oscurecer
+                    opacity: 0.4, // Ajuste de opacidad para hacerlo más visible
                     child: ImageFiltered(
                       imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5), // Desenfoque en el círculo
                       child: Image.asset(
@@ -38,11 +38,11 @@ class SplashScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // Decoración encima del círculo
+                  // Decoración encima del círculo (más grande)
                   Image.asset(
                     'assets/images/decoracion circulo.png',
-                    width: 60,
-                    height: 60,
+                    width: 100, // Aumenta el ancho para hacerlo más prominente
+                    height: 100, // Aumenta la altura para hacerlo más prominente
                     fit: BoxFit.contain,
                   ),
                   // Texto encima del círculo y la decoración
