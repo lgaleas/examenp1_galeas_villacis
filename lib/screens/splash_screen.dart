@@ -9,7 +9,7 @@ class SplashScreen extends StatelessWidget {
         children: [
           // Imagen de fondo
           Image.asset(
-            'assets/images/your_image.png', // Reemplaza con el nombre exacto de tu imagen
+            'assets/images/fondoApp.jpg', // Reemplaza con el nombre exacto de tu imagen
             fit: BoxFit.cover,
           ),
           // Contenido de la pantalla
