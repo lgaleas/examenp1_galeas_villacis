@@ -11,46 +11,65 @@ class SplashScreen extends StatelessWidget {
         children: [
           // Imagen de fondo
           Image.asset(
-            'assets/images/fondoApp.jpg', // Reemplaza con el nombre exacto de tu imagen
+            'assets/images/fondoApp.jpg',
             fit: BoxFit.cover,
           ),
           // Contenido de la pantalla
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // Espacio en la parte superior
-              const SizedBox(height: 40),
+              const SizedBox(height: 100), // Espacio en la parte superior
 
-              // Título y subtítulo centrados
-              Column(
-                children: const [
-                  Text(
-                    'Daily Recipe',
-                    style: TextStyle(
-                      fontSize: 32,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
+              // Círculo decorativo, decoración y texto superpuestos
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  // Círculo decorativo en el fondo
+                  Image.asset(
+                    'assets/images/circulo.png',
+                    width: 120,
+                    height: 120,
+                    fit: BoxFit.contain,
                   ),
-                  SizedBox(height: 10),
-                  Text(
-                    'Cooking Done The Easy Way',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.white70,
-                    ),
+                  // Decoración encima del círculo
+                  Image.asset(
+                    'assets/images/decoracion circulo.png',
+                    width: 60,
+                    height: 60,
+                    fit: BoxFit.contain,
+                  ),
+                  // Texto encima de las imágenes
+                  Column(
+                    children: const [
+                      Text(
+                        'Daily Recipe',
+                        style: TextStyle(
+                          fontSize: 32,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(height: 5),
+                      Text(
+                        'Cooking Done The Easy Way',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white70,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
 
               // Botones en la parte inferior
               Padding(
-                padding: const EdgeInsets.only(bottom: 40), // Espacio inferior para que no toque el borde
+                padding: const EdgeInsets.only(bottom: 40), // Espacio inferior
                 child: Column(
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/register'); // Redirige a la pantalla de registro
+                        Navigator.pushNamed(context, '/register');
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.orange,
@@ -64,10 +83,10 @@ class SplashScreen extends StatelessWidget {
                         style: TextStyle(fontSize: 18),
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 10),
                     TextButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/login'); // Redirige a la pantalla de inicio de sesión
+                        Navigator.pushNamed(context, '/login');
                       },
                       child: const Text(
                         'Sign In',
