@@ -48,7 +48,7 @@ class SplashScreen extends StatelessWidget {
                   const Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      SizedBox(height: 50),
+                      SizedBox(height: 55),
                       Text(
                         'Daily Recipe',
                         style: TextStyle(
@@ -57,11 +57,11 @@ class SplashScreen extends StatelessWidget {
                           color: Colors.white,
                         ),
                       ),
-                      SizedBox(height: 15),
+                      SizedBox(height: 30),
                       Text(
                         'Cooking Done The Easy Way',
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 12,
                           color: Colors.white70,
                         ),
                       ),
@@ -80,14 +80,14 @@ class SplashScreen extends StatelessWidget {
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.orange,
-                        minimumSize: Size(double.infinity, 50),
+                        minimumSize: const Size(double.infinity, 50),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
                       child: const Text(
                         'Register',
-                        style: TextStyle(fontSize: 18),
+                        style: TextStyle(fontSize: 18, color: Colors.white),
                       ),
                     ),
                     const SizedBox(height: 10),
