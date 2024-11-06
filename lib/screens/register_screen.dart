@@ -1,22 +1,42 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
-class RegisterScreen extends StatelessWidget {
+
+class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
 
   @override
+  RegisterScreenState createState() => RegisterScreenState();
+}
+
+class RegisterScreenState extends State<RegisterScreen> {
+  bool isDarkTheme = true;
+  bool isYellowText = false;
+
+  void toggleTheme() {
+    setState(() {
+      isDarkTheme = !isDarkTheme;
+      isYellowText = !isYellowText;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    Color textColor = isYellowText ? Colors.yellow : (isDarkTheme ? Colors.white : Colors.black);
+
     return Scaffold(
+      backgroundColor: isDarkTheme ? Colors.black : Colors.white,
       body: Stack(
         children: [
           Container(
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/images/fondoApp.jpg"),
+                image: const AssetImage("assets/images/fondoApp.jpg"),
                 fit: BoxFit.cover,
+                colorFilter: ColorFilter.mode(
+                  Colors.black.withOpacity(isDarkTheme ? 0.6 : 0.3),
+                  BlendMode.darken,
+                ),
               ),
-            ),
-            child: Container(
-              color: Colors.black.withOpacity(0.6),
             ),
           ),
           Center(
@@ -50,24 +70,24 @@ class RegisterScreen extends StatelessWidget {
                             fit: BoxFit.contain,
                           ),
                         ),
-                        const Column(
+                        Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            SizedBox(height: 55),
+                            const SizedBox(height: 55),
                             Text(
                               'Daily Recipe',
                               style: TextStyle(
                                 fontSize: 32,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.white,
+                                color: textColor,
                               ),
                             ),
-                            SizedBox(height: 8),
+                            const SizedBox(height: 8),
                             Text(
                               'Register',
                               style: TextStyle(
                                 fontSize: 20,
-                                color: Colors.white,
+                                color: textColor,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -76,73 +96,73 @@ class RegisterScreen extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 40),
-                    const TextField(
+                    TextField(
                       decoration: InputDecoration(
                         prefixIcon: Icon(
                           Icons.person_outline,
-                          color: Colors.white,
+                          color: textColor,
                           size: 24,
                         ),
                         hintText: "Full Name",
-                        hintStyle: TextStyle(color: Colors.white54),
+                        hintStyle: TextStyle(color: textColor.withOpacity(0.7)),
                         filled: true,
                         fillColor: Colors.transparent,
                         enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white54),
+                          borderSide: BorderSide(color: textColor.withOpacity(0.7)),
                         ),
                         focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
+                          borderSide: BorderSide(color: textColor),
                         ),
                       ),
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: textColor),
                     ),
                     const SizedBox(height: 20),
-                    const TextField(
+                    TextField(
                       decoration: InputDecoration(
                         prefixIcon: Icon(
                           Icons.email_outlined,
-                          color: Colors.white,
+                          color: textColor,
                           size: 24,
                         ),
                         hintText: "Email Address",
-                        hintStyle: TextStyle(color: Colors.white54),
+                        hintStyle: TextStyle(color: textColor.withOpacity(0.7)),
                         filled: true,
                         fillColor: Colors.transparent,
                         enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white54),
+                          borderSide: BorderSide(color: textColor.withOpacity(0.7)),
                         ),
                         focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
+                          borderSide: BorderSide(color: textColor),
                         ),
                       ),
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: textColor),
                     ),
                     const SizedBox(height: 20),
-                    const TextField(
+                    TextField(
                       obscureText: true,
                       decoration: InputDecoration(
                         prefixIcon: Icon(
                           Icons.lock_outline,
-                          color: Colors.white,
+                          color: textColor,
                           size: 24,
                         ),
                         hintText: "Password",
-                        hintStyle: TextStyle(color: Colors.white54),
+                        hintStyle: TextStyle(color: textColor.withOpacity(0.7)),
                         filled: true,
                         fillColor: Colors.transparent,
                         enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white54),
+                          borderSide: BorderSide(color: textColor.withOpacity(0.7)),
                         ),
                         focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
+                          borderSide: BorderSide(color: textColor),
                         ),
                         suffixIcon: Icon(
                           Icons.visibility_off_outlined,
-                          color: Colors.white,
+                          color: textColor,
                           size: 24,
                         ),
                       ),
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: textColor),
                     ),
                     const SizedBox(height: 40),
                     ElevatedButton(
@@ -152,17 +172,11 @@ class RegisterScreen extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 159,
-                          vertical: 16,
-                        ),
+                        padding: const EdgeInsets.symmetric(horizontal: 159, vertical: 16),
                       ),
-                      child: const Text(
+                      child: Text(
                         "Register",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: TextStyle(color: textColor, fontWeight: FontWeight.bold),
                       ),
                     ),
                     const SizedBox(height: 20),
@@ -179,21 +193,26 @@ class RegisterScreen extends StatelessWidget {
               child: GestureDetector(
                 onTap: () {},
                 child: RichText(
-                  text: const TextSpan(
+                  text: TextSpan(
                     text: "Already registered? ",
-                    style: TextStyle(color: Colors.white, fontSize: 14),
+                    style: TextStyle(color: textColor, fontSize: 14),
                     children: [
                       TextSpan(
                         text: "Sign in.",
-                        style: TextStyle(
-                          color: Colors.orange,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: TextStyle(color: Colors.orange, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
                 ),
               ),
+            ),
+          ),
+          Positioned(
+            top: 40,
+            right: 20,
+            child: IconButton(
+              icon: Icon(isDarkTheme ? Icons.brightness_7 : Icons.brightness_2, color: textColor),
+              onPressed: toggleTheme,
             ),
           ),
         ],
