@@ -17,9 +17,9 @@ class SplashScreen extends StatelessWidget {
           ),
           // Contenido de la pantalla
           Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.start, // Alinea todo al inicio
             children: [
-              const SizedBox(height: 100), // Espacio en la parte superior
+              const SizedBox(height: 230), // Aumento del espacio superior para bajar el contenido
 
               // Círculo decorativo con desenfoque y opacidad
               Stack(
@@ -27,7 +27,7 @@ class SplashScreen extends StatelessWidget {
                 children: [
                   // Círculo decorativo borroso y menos opaco
                   Opacity(
-                    opacity: 0.4, // Ajuste de opacidad para hacerlo más visible
+                    opacity: 0.3, // Ajuste de opacidad para hacerlo más visible
                     child: ImageFiltered(
                       imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5), // Desenfoque en el círculo
                       child: Image.asset(
@@ -38,36 +38,44 @@ class SplashScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // Decoración encima del círculo (más grande)
-                  Image.asset(
-                    'assets/images/decoracion circulo.png',
-                    width: 100, // Aumenta el ancho para hacerlo más prominente
-                    height: 100, // Aumenta la altura para hacerlo más prominente
-                    fit: BoxFit.contain,
+                  // Decoración encima del círculo, ajustada hacia arriba
+                  Positioned(
+                    top: -10, // Ajuste hacia arriba
+                    child: Image.asset(
+                      'assets/images/decoracion circulo.png',
+                      width: 100, // Tamaño ajustado para que abarque bien el círculo
+                      height: 100,
+                      fit: BoxFit.contain,
+                    ),
                   ),
-                  // Texto encima del círculo y la decoración
-                  const Column(
-                    children: [
-                      Text(
-                        'Daily Recipe',
-                        style: TextStyle(
-                          fontSize: 32,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                  // Texto debajo de las imágenes con separación
+                  const Positioned(
+                    top: 70, // Ajuste la posición del texto debajo de la decoración
+                    child: Column(
+                      children: [
+                        Text(
+                          'Daily Recipe',
+                          style: TextStyle(
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 5),
-                      Text(
-                        'Cooking Done The Easy Way',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.white70,
+                        SizedBox(height: 10), // Espacio entre el título y subtítulo
+                        Text(
+                          'Cooking Done The Easy Way',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.white70,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ],
               ),
+              
+              const Spacer(), // Espacio flexible para empujar los botones hacia abajo
 
               // Botones en la parte inferior
               Padding(
