@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -20,16 +21,22 @@ class SplashScreen extends StatelessWidget {
             children: [
               const SizedBox(height: 100), // Espacio en la parte superior
 
-              // Círculo decorativo, decoración y texto superpuestos
+              // Círculo decorativo con desenfoque y opacidad
               Stack(
                 alignment: Alignment.center,
                 children: [
-                  // Círculo decorativo en el fondo
-                  Image.asset(
-                    'assets/images/circulo.png',
-                    width: 120,
-                    height: 120,
-                    fit: BoxFit.contain,
+                  // Círculo decorativo borroso y oscuro
+                  Opacity(
+                    opacity: 0.3, // Ajuste de opacidad para oscurecer
+                    child: ImageFiltered(
+                      imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5), // Desenfoque en el círculo
+                      child: Image.asset(
+                        'assets/images/circulo.png',
+                        width: 120,
+                        height: 120,
+                        fit: BoxFit.contain,
+                      ),
+                    ),
                   ),
                   // Decoración encima del círculo
                   Image.asset(
@@ -38,9 +45,9 @@ class SplashScreen extends StatelessWidget {
                     height: 60,
                     fit: BoxFit.contain,
                   ),
-                  // Texto encima de las imágenes
-                  Column(
-                    children: const [
+                  // Texto encima del círculo y la decoración
+                  const Column(
+                    children: [
                       Text(
                         'Daily Recipe',
                         style: TextStyle(
