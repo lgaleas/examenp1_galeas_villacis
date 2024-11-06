@@ -10,26 +10,24 @@ class SplashScreen extends StatelessWidget {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          // Imagen de fondo
           Image.asset(
             'assets/images/fondoApp.jpg',
             fit: BoxFit.cover,
           ),
-          // Contenido de la pantalla
+          Container(
+            color: Colors.black.withOpacity(0.4),
+          ),
           Column(
-            mainAxisAlignment: MainAxisAlignment.start, // Alinea todo al inicio
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const SizedBox(height: 230), // Aumento del espacio superior para bajar el contenido
-
-              // Círculo decorativo con desenfoque y opacidad
+              const SizedBox(height: 230),
               Stack(
                 alignment: Alignment.center,
                 children: [
-                  // Círculo decorativo borroso y menos opaco
                   Opacity(
-                    opacity: 0.3, // Ajuste de opacidad para hacerlo más visible
+                    opacity: 0.3,
                     child: ImageFiltered(
-                      imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5), // Desenfoque en el círculo
+                      imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
                       child: Image.asset(
                         'assets/images/circulo.png',
                         width: 120,
@@ -38,48 +36,42 @@ class SplashScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // Decoración encima del círculo, ajustada hacia arriba
                   Positioned(
-                    top: -10, // Ajuste hacia arriba
+                    top: -20,
                     child: Image.asset(
                       'assets/images/decoracion circulo.png',
-                      width: 100, // Tamaño ajustado para que abarque bien el círculo
+                      width: 100,
                       height: 100,
                       fit: BoxFit.contain,
                     ),
                   ),
-                  // Texto debajo de las imágenes con separación
-                  const Positioned(
-                    top: 70, // Ajuste la posición del texto debajo de la decoración
-                    child: Column(
-                      children: [
-                        Text(
-                          'Daily Recipe',
-                          style: TextStyle(
-                            fontSize: 32,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
+                  const Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SizedBox(height: 50),
+                      Text(
+                        'Daily Recipe',
+                        style: TextStyle(
+                          fontSize: 32,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
                         ),
-                        SizedBox(height: 10), // Espacio entre el título y subtítulo
-                        Text(
-                          'Cooking Done The Easy Way',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white70,
-                          ),
+                      ),
+                      SizedBox(height: 15),
+                      Text(
+                        'Cooking Done The Easy Way',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white70,
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-              
-              const Spacer(), // Espacio flexible para empujar los botones hacia abajo
-
-              // Botones en la parte inferior
+              const Spacer(),
               Padding(
-                padding: const EdgeInsets.only(bottom: 40), // Espacio inferior
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
                 child: Column(
                   children: [
                     ElevatedButton(
@@ -88,7 +80,7 @@ class SplashScreen extends StatelessWidget {
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.orange,
-                        padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                        minimumSize: Size(double.infinity, 50),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
